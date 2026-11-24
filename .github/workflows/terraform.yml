@@ -3,7 +3,7 @@ cd ~/terraform-iac-cicd
 cat > .github/workflows/terraform.yml <<'EOF'
 name: Terraform CI/CD
 
-"on":
+on:
   push:
     branches:
       - main
@@ -13,7 +13,6 @@ jobs:
   terraform:
     name: Terraform Automation
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
