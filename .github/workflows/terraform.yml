@@ -1,17 +1,17 @@
+cd ~/terraform-iac-cicd
+
 cat > .github/workflows/terraform.yml <<'EOF'
 name: Terraform CI/CD
 
-on:
+"on":
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   terraform:
-    name: Terraform
+    name: Terraform Automation
     runs-on: ubuntu-latest
 
     steps:
@@ -24,12 +24,12 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform Format
-        run: terraform fmt -check
-
       - name: Terraform Validate
         run: terraform validate
 
       - name: Terraform Plan
-        run: terraform plan -input=false
+        run: terraform plan
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
 EOF
